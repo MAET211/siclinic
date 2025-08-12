@@ -28,9 +28,13 @@ class EPSPanelProvider extends PanelProvider
             ->id('EPS')
             ->path('EPS')
             ->login()
+            ->brandLogo(asset('https://img.freepik.com/vector-premium/persona-estetoscopio-mano-lista-examenes-medicos-logotipo-moderno-que-incorpora-silueta-trabajadores-salud_538213-64300.jpg?semt=ais_hybrid&w=740')) // Logo en la esquina superior izquierda
+            ->brandLogoHeight('40px') 
+            ->brandName('EPSPanel') 
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Emerald,
             ])
+            ->font('Roboto')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
@@ -38,6 +42,7 @@ class EPSPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
+                \App\Filament\Widgets\EstadisticasPanel::class,
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
             ])
@@ -57,6 +62,7 @@ class EPSPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->topNavigation();
     }
 }
